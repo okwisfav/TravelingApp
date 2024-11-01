@@ -25,13 +25,7 @@ export default function Layout() {
         name="index"
         options={{
           tabBarIcon: ({ color }) => (
-            <View style={{
-              backgroundColor:Colors.primaryColor, 
-              paddingHorizontal:16,
-              paddingVertical:12,
-              borderRadius: 10,
-              height: 50,
-              }}>
+            <View>
                  <Ionicons name="compass" size={28} color={color} />
             </View>
           ),
@@ -49,7 +43,16 @@ export default function Layout() {
         name="search"
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="search" size={20} color={color} />
+            <View 
+            style={{
+              backgroundColor:Colors.primaryColor, 
+              paddingHorizontal:16,
+              paddingVertical:12,
+              borderRadius: 10,
+              height: 50,
+              }}>
+                   <Ionicons name="search-outline" size={20} color={Colors.white} />
+             </View>
           ),
         }}
       />
