@@ -20,7 +20,7 @@ export default function Layout() {
        tabBarInactiveTintColor: '#999'
     }}>
 
-      // for adding icons and also setting navbar 
+      // for adding icons and also setting and also routering navbar 
       <Tabs.Screen
         name="index"
         options={{
