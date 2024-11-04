@@ -6,7 +6,8 @@ import Colors from '@/constants/Colors';
 
 const Index = () => {
   return (
-    <Stack.Screen
+     <>
+        <Stack.Screen
       options={{
         headerTransparent: true,
         headerTitle: "",
@@ -39,6 +40,7 @@ const Index = () => {
       }}
     />
     //End of header sections 
+   </>
   );
 };
 
