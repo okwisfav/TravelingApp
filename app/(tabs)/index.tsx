@@ -1,16 +1,25 @@
 // Import GestureHandlerRootView and TextInput
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet, TouchableOpacity, Image, View, Text, TextInput } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { SearchBar } from 'react-native-screens';
 import CategoryButtons from '@/components/CategoryButtons';
+import category from './category';
+import Listings from '@/components/Listings';
 
 const Index = () => {
   const headerHeight = useHeaderHeight();
+  const [category, setCategory] = useState('All')
+
+  const  onCatChanged = (category: string) =>{
+    // console.log("Category:", category);
+    setCategory(category);
+
+  }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack.Screen
@@ -61,7 +70,9 @@ const Index = () => {
                 <Ionicons name="options" size={28} color={Colors.white} />
             </TouchableOpacity>
           </View>
-          <CategoryButtons />
+
+          <CategoryButtons onCategoryChanged={onCatChanged} />
+          <Listings />
       </View>
     </GestureHandlerRootView>
   );
