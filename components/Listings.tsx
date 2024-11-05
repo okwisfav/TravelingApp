@@ -1,10 +1,41 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { FlatList } from 'react-native-gesture-handler'
+import { StyleSheet } from 'react-native';
 
-export default function Listings() {
+
+type Props = {
+    listings: any[]
+}
+
+const Listings = ({listings}: Props) => {
+
+    const renderItems =({ item }) =>{
+        return(
+           <View>
+               <Text>{item.name}</Text>
+           </View>
+        )
+    }
   return (
     <View>
-      <Text>Listings</Text>
+        <FlatList data={listings} renderItem={renderItems} />
     </View>
   )
+}
+
+export default Listings
+
+const styles = StyleSheet.create({})
+
+interface RootObject {
+    id:string;
+    name: string;
+    image: string;
+    description: string;
+    rating: number;
+    price: string;
+    duration: string;
+    location: string;
+    category: string;
 }

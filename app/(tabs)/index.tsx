@@ -10,6 +10,8 @@ import { SearchBar } from 'react-native-screens';
 import CategoryButtons from '@/components/CategoryButtons';
 import category from './category';
 import Listings from '@/components/Listings';
+import listingData from '@/data/destinations.json'
+
 
 const Index = () => {
   const headerHeight = useHeaderHeight();
@@ -72,7 +74,8 @@ const Index = () => {
           </View>
 
           <CategoryButtons onCategoryChanged={onCatChanged} />
-          <Listings />
+
+          <Listings listings={listingData}/>
       </View>
     </GestureHandlerRootView>
   );
