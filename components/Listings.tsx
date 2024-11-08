@@ -4,6 +4,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import { StyleSheet } from 'react-native';
 import { ListingType } from '@/types/listingType';
 import Colors from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
 
 
 type Props = {
@@ -18,8 +19,12 @@ const Listings = ({listings}: Props) => {
                   <View style={styles.item}>
                       <Image 
                        source={{uri: item.image}}
-                        style={{styles.image}}
+                        style={styles.image}
                          />
+                         <View style={styles.bookmark}>
+                             <Ionicons name='bookmark-outline' size={20} color={Colors.white}  />
+                         </View>
+                         <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
                   </View>
             </TouchableOpacity>
         )
@@ -47,7 +52,24 @@ const styles = StyleSheet.create({
         width:200,
         height: 200,
         borderRadius: 10,
-    }
+        marginBottom: 30,
+    },
+    bookmark: {
+        position: "absolute",
+        top: 185,
+        right: 30,
+        backgroundColor: Colors.primaryColor,
+        padding: 10,
+        borderRadius: 30,
+        borderWidth: 2,
+        borderColor: Colors.white,
+      },
+      itemTxt: {
+        fontSize: 16,
+        fontWeight: "600",
+        color: Colors.black,
+        marginBottom: 10,
+      },
 })
 
  
