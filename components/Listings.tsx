@@ -6,42 +6,46 @@ import { ListingType } from '@/types/listingType';
 import Colors from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
-
 type Props = {
     listings: any[]
 }
 
 const Listings = ({listings}: Props) => {
 
-    const renderItems:ListRenderItem<ListingType> =({ item }) =>{
-        return(
+    const renderItems: ListRenderItem<ListingType> = ({ item }) => {
+        return (
             <TouchableOpacity>
-                  <View style={styles.item}>
-                      <Image 
-                       source={{uri: item.image}}
+                {/* categorysections */}
+                <View style={styles.item}>
+                    <Image 
+                        source={{uri: item.image}}
                         style={styles.image}
-                         />
-                         <View style={styles.bookmark}>
-                             <Ionicons name='bookmark-outline' size={20} color={Colors.white}  />
-                         </View>
-                         <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
-                  </View>
+                    />
+                    <View style={styles.bookmark}>
+                        <Ionicons name='bookmark-outline' size={20} color={Colors.white} />
+                    </View>
+                    <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
+                </View>
             </TouchableOpacity>
         )
     }
-  return (
-    <View>
-        <FlatList data={listings} 
-        renderItem={renderItems} 
-        horizontal showsHorizontalScrollIndicator={false}/>
-    </View>
-  )
+
+    return (
+        <View>
+            <FlatList 
+                data={listings} 
+                renderItem={renderItems} 
+                horizontal 
+                showsHorizontalScrollIndicator={false} 
+            />
+        </View>
+    )
 }
 
 export default Listings
 
 const styles = StyleSheet.create({
-    item:{
+    item: {
         backgroundColor: Colors.white,
         padding: 10,
         borderRadius: 10,
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
         width: 220,
     },
     image: {
-        width:200,
+        width: 200,
         height: 200,
         borderRadius: 10,
         marginBottom: 30,
@@ -63,13 +67,11 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         borderWidth: 2,
         borderColor: Colors.white,
-      },
-      itemTxt: {
+    },
+    itemTxt: {
         fontSize: 16,
         fontWeight: "600",
         color: Colors.black,
         marginBottom: 10,
-      },
+    },
 })
-
- 
