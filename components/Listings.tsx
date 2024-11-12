@@ -4,7 +4,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import { StyleSheet } from 'react-native';
 import { ListingType } from '@/types/listingType';
 import Colors from '@/constants/Colors';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 
 type Props = {
     listings: any[]
@@ -25,6 +25,16 @@ const Listings = ({listings}: Props) => {
                         <Ionicons name='bookmark-outline' size={20} color={Colors.white} />
                     </View>
                     <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
+                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                         <View style={{flexDirection:'row', alignItems:'center'}}>
+                              <FontAwesome5 name="map-marker-alt" 
+                              size={18} 
+                              color={Colors.primaryColor} 
+                              />
+                              <Text style={styles.itemLocationTxt}>{item.location}</Text>
+                         </View>
+                         <Text style={styles.itemPriceTxt}>${item.price}</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         )
@@ -74,4 +84,13 @@ const styles = StyleSheet.create({
         color: Colors.black,
         marginBottom: 10,
     },
+    itemLocationTxt: {
+        fontSize: 12,
+        marginLeft: 5,
+    },
+    itemPriceTxt: {
+        fontSize: 12,
+        fontWeight: "600",
+        color: Colors.primaryColor,
+    }
 })
