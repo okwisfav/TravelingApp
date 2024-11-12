@@ -1,58 +1,81 @@
-import { View, Text, ListRenderItem, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
-import { FlatList } from 'react-native-gesture-handler'
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 import { ListingType } from '@/types/listingType';
 import Colors from '@/constants/Colors';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Link } from "expo-router";
 
 type Props = {
-    listings: any[]
-}
+    listings: ListingType[]; // Use ListingType array if possible
+    category: string;
+};
 
-const Listings = ({listings}: Props) => {
+const Listings = ({ listings = [], category }: Props) => {
+    const [loading, setLoading] = useState(false);
 
-    const renderItems: ListRenderItem<ListingType> = ({ item }) => {
+    useEffect(() => {
+        console.log('Update Listing');
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 200);
+    }, [category]);
+
+    const renderItems = ({ item }: { item: ListingType }) => {
+        if (!item) return null;
+
         return (
-            <TouchableOpacity>
-                {/* categorysections */}
-                <View style={styles.item}>
-                    <Image 
-                        source={{uri: item.image}}
-                        style={styles.image}
-                    />
-                    <View style={styles.bookmark}>
-                        <Ionicons name='bookmark-outline' size={20} color={Colors.white} />
+            <Link href={`/listing/${item.id}`} asChild>
+                <TouchableOpacity>
+                    <View style={styles.item}>
+                        <Image 
+                            source={{ uri: item.image || '' }}
+                            style={styles.image}
+                        />
+                        <View style={styles.bookmark}>
+                            <Ionicons name='bookmark-outline' size={20} color={Colors.white} />
+                        </View>
+                        <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail'>
+                            {item.name || 'Unknown'}
+                        </Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <FontAwesome5 
+                                    name="map-marker-alt" 
+                                    size={18} 
+                                    color={Colors.primaryColor} 
+                                />
+                                <Text style={styles.itemLocationTxt}>
+                                    {item.location || 'Unknown Location'}
+                                </Text>
+                            </View>
+                            <Text style={styles.itemPriceTxt}>
+                                ${item.price || '0'}
+                            </Text>
+                        </View>
                     </View>
-                    <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
-                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                         <View style={{flexDirection:'row', alignItems:'center'}}>
-                              <FontAwesome5 name="map-marker-alt" 
-                              size={18} 
-                              color={Colors.primaryColor} 
-                              />
-                              <Text style={styles.itemLocationTxt}>{item.location}</Text>
-                         </View>
-                         <Text style={styles.itemPriceTxt}>${item.price}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        )
-    }
+                </TouchableOpacity>
+            </Link>
+        );
+    };
 
     return (
         <View>
             <FlatList 
-                data={listings} 
+                data={listings}
                 renderItem={renderItems} 
                 horizontal 
                 showsHorizontalScrollIndicator={false} 
+                keyExtractor={(item) => item.id.toString()}
             />
         </View>
-    )
-}
+    );
+};
 
-export default Listings
+export default Listings;
 
 const styles = StyleSheet.create({
     item: {
@@ -92,5 +115,5 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "600",
         color: Colors.primaryColor,
-    }
-})
+    },
+});
