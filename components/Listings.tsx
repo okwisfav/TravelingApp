@@ -8,7 +8,7 @@ import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { Link } from "expo-router";
 
 type Props = {
-    listings: ListingType[]; // Use ListingType array if possible
+    listings: any[]; 
     category: string;
 };
 
@@ -16,7 +16,7 @@ const Listings = ({ listings = [], category }: Props) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        console.log('Update Listing');
+        // console.log('Update Listing');
         setLoading(true);
 
         setTimeout(() => {
@@ -65,7 +65,7 @@ const Listings = ({ listings = [], category }: Props) => {
     return (
         <View>
             <FlatList 
-                data={listings}
+                data={loading ? []: listings}
                 renderItem={renderItems} 
                 horizontal 
                 showsHorizontalScrollIndicator={false} 

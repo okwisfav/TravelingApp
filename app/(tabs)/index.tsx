@@ -1,6 +1,6 @@
 // Import GestureHandlerRootView and TextInput
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { StyleSheet, TouchableOpacity, Image, View, Text, TextInput } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, View, Text, TextInput, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +11,8 @@ import CategoryButtons from '@/components/CategoryButtons';
 import category from './category';
 import Listings from '@/components/Listings';
 import listingData from '@/data/destinations.json'
+import GroupListings from '@/components/GroupListings';
+import groupData from  '@/data/groups.json';
 
 
 const Index = () => {
@@ -58,6 +60,7 @@ const Index = () => {
       />
 
       <View style={[styles.container, { paddingTop: headerHeight }]}>
+         <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.headerText}>Explore The Beautiful World</Text>
 
           <View style={styles.searchSectionWrapper}>       
@@ -75,7 +78,9 @@ const Index = () => {
 
           <CategoryButtons onCategoryChanged={onCatChanged} />
 
-          <Listings listings={listingData}/>
+          <Listings listings={listingData} category={category}/>
+          <GroupListings  listings={groupData}/>
+        </ScrollView>
       </View>
     </GestureHandlerRootView>
   );
