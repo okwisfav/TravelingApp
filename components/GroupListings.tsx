@@ -2,6 +2,7 @@ import { FlatList,Image, ListRenderItem, StyleSheet, Text, View } from 'react-na
 import React from 'react'
 import { GroupType } from '@/types/groupType'
 import Colors from '@/constants/Colors'
+import { Ionicons } from '@expo/vector-icons'
 
 
 const GroupListings = ({listings}: {listings: GroupType[]}) => {
@@ -10,7 +11,12 @@ const GroupListings = ({listings}: {listings: GroupType[]}) => {
         <View style={styles.item}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <View>
-                 <Text>{item.name}</Text>
+                 <Text style={styles.itemTxt}>{item.name}</Text>
+                 <View style={{flexDirection:'row', alignItems:'center'}}>
+                 <Ionicons name="star" size={20} color={Colors.primaryColor} />
+                    <Text style={styles.itemRating}>{item.rating}</Text>
+                    <Text style={styles.itemReviews}>({item.reviews})</Text>
+                 </View>
             </View>
         </View>
       )
@@ -46,4 +52,20 @@ const styles = StyleSheet.create({
         color: Colors.black,
         marginBottom: 10,
       },
+      itemTxt: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: Colors.black,
+        marginBottom: 8,
+      },
+      itemRating: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: Colors.black,
+        marginLeft: 5,
+      },
+      itemReviews: {
+        fontSize: 14,
+        color: '#999'
+      }
 })
