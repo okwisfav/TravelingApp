@@ -1,37 +1,50 @@
 import { Image, View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams,useRouter } from 'expo-router';
 import { ListingType } from '@/types/listingType';
 import listingData from '@/data/destinations.json';
-
+import { Feather } from '@expo/vector-icons';
+import Colors from '@/constants/Colors';
 const { width } = Dimensions.get('window'); // Example width, adjust as needed
 const IMG_HEIGHT = 200; // Example height, adjust as needed
 
 const ListingDetails = () => {
     // Use object destructuring to access the id parameter
     const { id } = useLocalSearchParams();
-    const listing: ListingType | undefined = (listingData as ListingType[]).find(
+    const listing: ListingType = (listingData as ListingType[]).find(
         (item) => item.id === id
     );
-
-    if (!listing) {
-        return <Text>Listing not found</Text>;
-    }
+     
+    const router = useRouter();
 
     return (
         <>
           <Stack.Screen options={{
-             headerTransparent: true,
+             headerTransparent:true,
              headerTitle: "",
              headerLeft: () => (
-                <TouchableOpacity onPress={() => {}}>
-                    <Text style={{ padding: 10 }}>Back</Text>
+                <TouchableOpacity
+                onPress={() => router.back()}
+                style={{
+                  backgroundColor: "rgba(255, 255, 255, 0.5)",
+                  borderRadius: 10,
+                  padding: 4,
+                }}
+              >
+                    <View style={{
+                        backgroundColor:Colors.white,
+                        padding:6,
+                        borderRadius:10,
+                        }}
+                    >
+                        <Feather name='arrow-left' size={20} />  
+                    </View>
                 </TouchableOpacity>
              )
           }} />
-          <View>
-              <Image source={{ uri: listing.image }} style={styles.image} />
-          </View>
+        <View>
+            <Image source={{ uri: listing.image }} style={styles.image} />
+        </View>
         </>
     );
 };
