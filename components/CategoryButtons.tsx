@@ -11,10 +11,10 @@ import destinationCategories from "@/data/categories";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type Props = {
-  onCategoryChanged: (category: string) => void;
-};
+  onCagtegoryChanged: (category: string) => void;
+}
 
-const CategoryButtons = ({ onCategoryChanged }: Props) => {
+const CategoryButtons = ({onCagtegoryChanged}: Props) => {
   const scrollRef = useRef<ScrollView>(null);
   const itemRef = useRef<TouchableOpacity[] | null[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,7 +27,7 @@ const CategoryButtons = ({ onCategoryChanged }: Props) => {
       scrollRef.current?.scrollTo({ x: x, y: 0, animated: true });
     });
 
-    onCategoryChanged(destinationCategories[index].title);
+    onCagtegoryChanged(destinationCategories[index].title);
   };
 
   return (
@@ -46,7 +46,7 @@ const CategoryButtons = ({ onCategoryChanged }: Props) => {
         {destinationCategories.map((item, index) => (
           <TouchableOpacity
             key={index}
-            ref={(el) => (itemRef.current[index] = el)}
+            ref={(el) => itemRef.current[index] = el}
             onPress={() => handleSelectCategory(index)}
             style={
               activeIndex === index

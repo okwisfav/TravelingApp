@@ -11,7 +11,7 @@
         }
       },
       "preview3": {
-        "developmentClient": true   com.my_account666.myapp
+        "developmentClient": true
       },
       "production": {}
     }

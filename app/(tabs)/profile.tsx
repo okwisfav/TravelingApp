@@ -1,20 +1,20 @@
-import {StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const profile = () => {
+const Page = () => {
   return (
-    <View style={style.container}>
-      <Text>Index</Text>
+    <View style={styles.container}>
+      <Text>Profile</Text>
     </View>
   )
 }
 
-export default profile
+export default Page
 
-const style = StyleSheet.create({
-    container: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems:'center',
-    }
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+  }
 })

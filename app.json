@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "expo-travel-app",
+    "slug": "expo-travel-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -12,6 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -20,7 +23,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.my_account666.Travel"
+      "package": "com.my_account666.expotravelapp"
     },
     "web": {
       "bundler": "metro",
@@ -38,7 +41,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "f2c3f2d1-a3ce-492c-9068-ee6daf7424eb"
+        "projectId": "592fd858-2e92-4a4f-a7e9-77391036f8d6"
       }
     }
   }
